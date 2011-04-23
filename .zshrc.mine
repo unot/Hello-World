@@ -1,0 +1,21 @@
+#!/opt/local/bin/zsh
+
+autoload -Uz url-quote-magic
+zle -N self-insert url-quote-magic
+
+setopt autopushd
+
+e_normal=`echo -e "\033[0;30m"`
+e_RED=`echo -e "\033[1;31m"`
+e_BLUE=`echo -e "\033[1;36m"`
+
+function make() {
+    LANG=C command make "$@" 2>&1 | sed -e "s@[Ee]rror:.*@$e_RED&$e_normal@g" -e "s@cannot\sfind.*@$e_RED&$e_normal@g" -e "s@[Ww]arning:.*@$e_BLUE&$e_normal@g"
+}
+function cwaf() {
+    LANG=C command ./waf "$@" 2>&1 | sed -e "s@[Ee]rror:.*@$e_RED&$e_normal@g" -e "s@cannot\sfind.*@$e_RED&$e_normal@g" -e "s@[Ww]arning:.*@$e_BLUE&$e_normal@g"
+}
+
+export PATH=/opt/local/bin:/opt/local/sbin:$HOME/bin:$HOME/Apps:$PATH:/Developer/android-sdk-mac_x86/tools
+export MANPATH=/opt/local/share/man:$MANPATH
+
