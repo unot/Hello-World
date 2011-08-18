@@ -19,3 +19,5 @@ function cwaf() {
 export PATH=/opt/local/bin:/opt/local/sbin:$HOME/bin:$HOME/Apps:$PATH:/Developer/android-sdk-mac_x86/tools:/Developer/android-sdk-mac_x86/platform-tools
 export MANPATH=/opt/local/share/man:$MANPATH
 
+alias taskshell='ZDOTDIR=~/.task zsh'
+

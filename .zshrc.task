@@ -1,0 +1,28 @@
+fpath=($fpath
+	/opt/local/share/doc/task/scripts/zsh
+	/usr/share/doc/task/scripts/zsh
+	/usr/share/zsh/functions/Completion/Unix
+	)
+autoload -Uz compinit && compinit
+bindkey '^i'	menu-expand-or-complete
+bindkey '^[^i'	reverse-menu-complete
+bindkey '^[i'	expand-or-complete
+zstyle ':completion:*' group-name
+zstyle ':completion:*' verbose yes
+zstyle ':completion:*:descriptions' format '%U%B%d%b%u'
+
+PROMPT="task> "
+
+autoload colors
+zstyle ':completion:*:*:task:*:arguments' list-colors "=(#b) #([^-]#)*=$color[cyan]=$color[bold];$color[blue]"
+zstyle ':completion:*:*:task:*:default' list-colors "=(#b) #([^-]#)*=$color[cyan]=$color[green]"
+zstyle ':completion:*:*:task:*:values' list-colors "=(#b) #([^-]#)*=$color[cyan]=$color[bold];$color[red]"
+zstyle ':completion:*:*:task:*:commands' list-colors "=(#b) #([^-]#)*=$color[cyan]=$color[yellow]"
+
+alias ed='task edit'
+alias ls='task ls'
+alias rm='task rm'
+alias quit='exit'
+
+for i in active add all annotate append blocked calendar color completed config delete denotate diagnostics done duplicate edit export export.csv export.ical export.yaml ghistory ghistory.annual help history history.annual import info list log long ls merge minimal newest next oldest overdue prepend projects pull push recurring shell show start stats stop summary tags timesheet unblocked undo version waiting; do alias $i="task $i"; done
+
