@@ -1,9 +1,13 @@
-#!/opt/local/bin/zsh
+#!/bin/zsh
 
 autoload -Uz url-quote-magic
 zle -N self-insert url-quote-magic
 
-setopt autopushd
+## カレントディレクトリ中に指定されたディレクトリが見つからなかった場合に
+## 移動先を検索するリスト
+cdpath=(~)
+## ディレクトリが変わったらディレクトリスタックを表示
+chpwd_functions=($chpwd_functions dirs)
 
 e_normal=`echo -e "\033[0;30m"`
 e_RED=`echo -e "\033[1;31m"`
@@ -16,8 +20,12 @@ function cwaf() {
     LANG=C command ./waf "$@" 2>&1 | sed -e "s@[Ee]rror:.*@$e_RED&$e_normal@g" -e "s@cannot\sfind.*@$e_RED&$e_normal@g" -e "s@[Ww]arning:.*@$e_BLUE&$e_normal@g"
 }
 
-export PATH=/opt/local/Library/Frameworks/Python.framework/Versions/2.7/bin:/opt/local/bin:/opt/local/sbin:$HOME/bin:$HOME/Apps:$PATH:/Developer/android-sdk-mac_x86/tools:/Developer/android-sdk-mac_x86/platform-tools
-export MANPATH=/opt/local/share/man:$MANPATH
+export PATH=$HOME/bin:$HOME/Apps:$PATH:/Developer/android-sdk-mac_x86/tools:/Developer/android-sdk-mac_x86/platform-tools
+#export MANPATH=/opt/local/share/man:$MANPATH
 
 alias taskshell='ZDOTDIR=~/.task zsh'
 
+export NODE_PATH=/usr/local/lib/node_modules
+
+eval "$(rbenv init -)"
+source /usr/local/Cellar/rbenv/0.3.0/completions/rbenv.zsh

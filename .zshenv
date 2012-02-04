@@ -11,7 +11,7 @@ path=(# システム用
   # 自分用
   $HOME/bin(N-/)
   # MacPorts用
-  /opt/local/bin(N-/)
+  #/opt/local/bin(N-/)
   # システム用
   /usr/local/bin(N-/)
   /usr/bin(N-/))

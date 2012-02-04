@@ -87,3 +87,8 @@
 ;; コピー、ペースト
 ;(require 'mac-key-mode)
 ;(mac-key-mode 1)
+
+;(require 'multi-term)
+;(setq multi-term-program shell-file-name)
+
+(set-frame-parameter nil 'alpha 91)
