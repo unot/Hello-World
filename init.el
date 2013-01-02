@@ -52,6 +52,13 @@
 ;         (".*monaco-bold-.*-mac-roman" . 0.9)
 ;         ("-cdac$" . 1.3))))
 
+(add-to-list 'load-path "~/.emacs.d/site-lisp")
+
+(require 'package)
+(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/")t)
+(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
+(package-initialize)
+
 (setq howm-menu-lang 'ja)
 (global-set-key "\C-c,," 'howm-menu)
 (autoload 'howm-menu "howm" "Hitori Otegaru Wiki Modoki" t)

@@ -20,13 +20,15 @@ function cwaf() {
     LANG=C command ./waf "$@" 2>&1 | sed -e "s@[Ee]rror:.*@$e_RED&$e_normal@g" -e "s@cannot\sfind.*@$e_RED&$e_normal@g" -e "s@[Ww]arning:.*@$e_BLUE&$e_normal@g"
 }
 
-export PATH=$HOME/bin:$HOME/Apps:$PATH:/usr/local/sbin:/Applications/android-sdk-mac_x86/tools:/Applications/android-sdk-mac_x86/platform-tools:/Applications/android-ndk-r7b
-#export MANPATH=/opt/local/share/man:$MANPATH
+export PATH=$HOME/.cabal/bin:$HOME/bin:$HOME/Applications:$PATH:/usr/local/sbin:/usr/local/texlive/2012/bin/x86_64-darwin:/Applications/android-sdk-mac_x86/tools:/Applications/android-sdk-mac_x86/platform-tools:/Applications/android-ndk-r7b:/usr/local/share/npm/bin
+export MANPATH=/usr/local/share/man:$MANPATH
 export REPORTTIME=3
+
+disable r
 
 alias taskshell='ZDOTDIR=~/.task zsh'
 
 export NODE_PATH=/usr/local/lib/node_modules
 
-eval "$(rbenv init -)"
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 #source /usr/local/Cellar/rbenv/0.3.0/completions/rbenv.zsh
