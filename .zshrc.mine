@@ -20,7 +20,8 @@ function cwaf() {
     LANG=C command ./waf "$@" 2>&1 | sed -e "s@[Ee]rror:.*@$e_RED&$e_normal@g" -e "s@cannot\sfind.*@$e_RED&$e_normal@g" -e "s@[Ww]arning:.*@$e_BLUE&$e_normal@g"
 }
 
-export PATH=$HOME/.cabal/bin:$HOME/bin:$HOME/Applications:$PATH:/usr/local/sbin:/usr/local/texlive/2012/bin/x86_64-darwin:/Applications/android-sdk-mac_x86/tools:/Applications/android-sdk-mac_x86/platform-tools:/Applications/android-ndk-r7b:/usr/local/share/npm/bin
+export NDKROOT=/Applications/android-ndk-r8d
+export PATH=$HOME/.cabal/bin:$HOME/bin:$HOME/Applications:$PATH:/usr/local/sbin:/usr/texbin:/Applications/android-sdk-mac_x86/tools:/Applications/android-sdk-mac_x86/platform-tools:$NDKROOT:/usr/local/share/npm/bin
 export MANPATH=/usr/local/share/man:$MANPATH
 export REPORTTIME=3
 
@@ -31,4 +32,5 @@ alias taskshell='ZDOTDIR=~/.task zsh'
 export NODE_PATH=/usr/local/lib/node_modules
 
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
-#source /usr/local/Cellar/rbenv/0.3.0/completions/rbenv.zsh
+source /usr/local/Cellar/rbenv/0.4.0/completions/rbenv.zsh
+. `brew --prefix`/etc/profile.d/z.sh
